@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/drawable/rounded_button_minor.xml" value="0.29259259259259257" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.146403242147923" />
+        <entry key="app/src/main/res/layout/game_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/list_item_guess.xml" value="0.30344827586206896" />
+        <entry key="app/src/main/res/layout/title_fragment.xml" value="0.146403242147923" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>

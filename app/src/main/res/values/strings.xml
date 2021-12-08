@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Mastermind Game</string>
+
+    <!-- Button labels -->
+    <string name="play_button">Play</string>
+    <string name="submit_button">Submit</string>
+    <string name="rule">Rule</string>
+
+    <!-- Numbers to choose -->
+    <string name="item_0">0</string>
+    <string name="item_1">1</string>
+    <string name="item_2">2</string>
+    <string name="item_3">3</string>
+    <string name="item_4">4</string>
+    <string name="item_5">5</string>
+    <string name="item_6">6</string>
+    <string name="item_7">7</string>
+
+    <!-- Guess message  strings -->
+    <string name="message_0">Guess was incorrect</string>
+    <string name="message_1">Guess a correct number</string>
+    <string name="message_2">Guess a correct number and correct location</string>
+</resources>
