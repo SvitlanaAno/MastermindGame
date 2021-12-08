@@ -21,6 +21,9 @@ class TitleFragment: Fragment()  {
          findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
         }
 
+        binding.ruleButton.setOnClickListener {
+            findNavController().navigate(TitleFragmentDirections.actionTitleDestinationToRulesFlagment())
+        }
         return binding.root
     }
 }

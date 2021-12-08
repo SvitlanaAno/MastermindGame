@@ -12,9 +12,35 @@
         <action
             android:id="@+id/action_title_to_game"
             app:destination="@id/game_destination" />
+        <action
+            android:id="@+id/action_title_destination_to_rulesFlagment"
+            app:destination="@id/rules_destination" />
     </fragment>
     <fragment
         android:id="@+id/game_destination"
         android:name="com.perlovka.mastermindgame.game.GameFragment"
-        android:label="game_fragment" />
+        android:label="game_fragment" >
+        <action
+            android:id="@+id/action_game_destination_to_resultFragment"
+            app:destination="@id/result_destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/result_destination"
+        android:name="com.perlovka.mastermindgame.result.ResultFragment"
+        android:label="result_fragment">
+        <argument
+            android:name="score"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_restart"
+            app:destination="@id/game_destination" />
+        <argument
+            android:name="message"
+            app:argType="string"
+            android:defaultValue="You are loose" />
+    </fragment>
+    <fragment
+        android:id="@+id/rules_destination"
+        android:name="com.perlovka.mastermindgame.rules.RulesFlagment"
+        android:label="RulesFlagment" />
 </navigation>

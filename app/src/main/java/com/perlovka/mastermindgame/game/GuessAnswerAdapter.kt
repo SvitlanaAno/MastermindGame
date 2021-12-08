@@ -49,5 +49,4 @@ class GuessAnswerAdapter:  RecyclerView.Adapter<GuessAnswerAdapter.ViewHolder>()
             message.text = item.message
         }
     }
-
 }

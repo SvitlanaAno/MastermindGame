@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/guess"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:background="#5BFFC107"
-        android:gravity="center"
-        android:paddingStart="@dimen/padding_text"
-        android:text="1234"
-        android:textSize="@dimen/text_size" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="#6DFF9800"
-        android:gravity="left"
-        android:text="Correct number and correct location"
-        android:textSize="@dimen/text_size" />
+        <TextView
+            android:id="@+id/guess"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="#5BFFC107"
+            android:gravity="center"
+            android:paddingStart="@dimen/padding_text"
+            android:text="1234"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#6DFF9800"
+            android:paddingStart="@dimen/padding"
+            android:gravity="start"
+            android:text="No input"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/guess"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/guess"
+            app:layout_constraintTop_toTopOf="@+id/guess"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

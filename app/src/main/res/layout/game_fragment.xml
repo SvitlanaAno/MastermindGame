@@ -5,9 +5,11 @@
 
     <!-- Data to make available to the XML via data binding -->
     <data>
-    <variable
-        name="gameViewModel"
-        type = "com.perlovka.mastermindgame.game.GameViewModel"/>
+
+        <variable
+            name="gameViewModel"
+            type="com.perlovka.mastermindgame.game.GameViewModel" />
+
         <variable
             name="guess"
             type="com.perlovka.mastermindgame.model.Guess" />
@@ -15,74 +17,76 @@
 
     <!-- Start of the visible fragment layout using ConstraintLayout -->
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/attempts_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/start_margin"
-        android:layout_marginEnd="@dimen/end_margin"
-        android:textSize="@dimen/text_size"
-        android:text="@{String.valueOf(gameViewModel.attempts)}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/attempts_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="@{String.valueOf(gameViewModel.attempts)}"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <EditText
+        <TextView
             android:id="@+id/editTextNumber"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:ems="10"
-            android:inputType="number"
-            android:maxLength="4"
+            android:maxLength="7"
             android:text="@={guess.number}"
-            android:textSize="@dimen/text_size"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/attempts_text" />
+            app:layout_constraintTop_toTopOf="@+id/submit_button" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
+            app:layout_constraintTop_toBottomOf="@+id/delete_button">
 
             <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:constraint_referenced_ids="item_0, item_1,item_2,item_3, item_4, item_5, item_6, item_7"
-                app:flow_horizontalStyle="spread"
+                app:flow_horizontalStyle="spread_inside"
                 app:flow_wrapMode="aligned"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_0"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
+                android:onClick="@{() -> gameViewModel.numberSelected(0, guess)}"
                 android:text="@string/item_0"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintEnd_toStartOf="@+id/item_1"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
+                android:onClick="@{() -> gameViewModel.numberSelected(1, guess)}"
                 android:text="@string/item_1"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
@@ -90,12 +94,13 @@
                 app:layout_constraintStart_toEndOf="@+id/item_0"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
+                android:onClick="@{() -> gameViewModel.numberSelected(2, guess)}"
                 android:text="@string/item_2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
@@ -103,60 +108,65 @@
                 app:layout_constraintStart_toEndOf="@+id/item_1"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
+                android:onClick="@{() -> gameViewModel.numberSelected(3, guess)}"
                 android:text="@string/item_3"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintEnd_toStartOf="@+id/item_4"
                 app:layout_constraintStart_toEndOf="@+id/item_2" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
-                android:text="@string/item_3"
+                android:onClick="@{() -> gameViewModel.numberSelected(4, guess)}"
+                android:text="@string/item_4"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintEnd_toStartOf="@+id/item_5"
                 app:layout_constraintStart_toEndOf="@+id/item_3" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
+                android:onClick="@{() -> gameViewModel.numberSelected(5, guess)}"
                 android:text="@string/item_5"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintEnd_toStartOf="@+id/item_6"
                 app:layout_constraintStart_toEndOf="@+id/item_4" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_6"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
+                android:onClick="@{() -> gameViewModel.numberSelected(6, guess)}"
                 android:text="@string/item_6"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintEnd_toStartOf="@+id/item_7"
                 app:layout_constraintStart_toEndOf="@+id/item_5" />
 
-            <TextView
+            <Button
                 android:id="@+id/item_7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/black"
                 android:gravity="center"
+                android:onClick="@{() -> gameViewModel.numberSelected(7, guess)}"
                 android:text="@string/item_7"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
@@ -164,25 +174,38 @@
                 app:layout_constraintStart_toEndOf="@+id/item_6" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/quess_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"   >
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quess_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"></androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_button"
+            app:layout_constraintEnd_toEndOf="@+id/submit_button"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/submit_button"
+            app:layout_constraintTop_toBottomOf="@+id/submit_button"
+            android:onClick="@{() -> gameViewModel.reset(guess)}"/>
 
         <Button
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/submit_button"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextNumber"
+            app:layout_constraintBottom_toTopOf="@+id/delete_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editTextNumber"
-            app:layout_constraintTop_toTopOf="@+id/editTextNumber" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:enabled="@{gameViewModel.submitButtonClickable}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

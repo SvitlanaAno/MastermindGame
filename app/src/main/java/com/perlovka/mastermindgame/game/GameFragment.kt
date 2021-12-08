@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.perlovka.mastermindgame.R
 import com.perlovka.mastermindgame.databinding.GameFragmentBinding
 import com.perlovka.mastermindgame.model.Guess
@@ -44,11 +45,31 @@ class GameFragment : Fragment() {
             binding.guess = Guess()
         }
 
+        viewModel.currentGuessNumber.observe(viewLifecycleOwner, Observer {
+           binding.editTextNumber.text = it
+        })
         viewModel.guessList.observe(viewLifecycleOwner, Observer {
             it?.let{
                 adapter.data = it
             }
         })
+
+        viewModel.eventGameFinished.observe(viewLifecycleOwner, Observer { value ->
+            if (value) {
+                gameFinished()
+                viewModel.onGameFinishedComplete()
+            }
+        })
+
         return binding.root
     }
+
+    /**
+     * Called when the game is finished
+     */
+    private fun gameFinished() {
+        val action = GameFragmentDirections.actionGameDestinationToResultFragment(viewModel.attempts.value ?: 0, viewModel.result)
+        NavHostFragment.findNavController(this).navigate(action)
+    }
+
 }

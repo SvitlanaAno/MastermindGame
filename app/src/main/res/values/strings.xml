@@ -5,6 +5,8 @@
     <string name="play_button">Play</string>
     <string name="submit_button">Submit</string>
     <string name="rule">Rule</string>
+    <string name="delete_button">Delete</string>
+
 
     <!-- Numbers to choose -->
     <string name="item_0">0</string>
@@ -20,4 +22,13 @@
     <string name="message_0">Guess was incorrect</string>
     <string name="message_1">Guess a correct number</string>
     <string name="message_2">Guess a correct number and correct location</string>
+    <string name="play_again">Play Again</string>
+    <string name="your_score_text">Your Score:</string>
+    <string name="rules_text" > At the start of the game the computer will randomly select a pattern of four different numbers from a total of 8 different numbers.
+    \n \n \t • A player will have 10 attempts to guess the number combinations
+	\n \n\t • At the end of each guess, computer will provide one of the following response as feedback:
+	\n\n \t  • The player had guess a correct number
+	\n\n \t• The player had guessed a correct number and its correct location
+	\n\n \t • The player’s guess was incorrect
+    </string>
 </resources>
