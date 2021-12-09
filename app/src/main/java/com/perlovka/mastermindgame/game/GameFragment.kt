@@ -28,28 +28,31 @@ class GameFragment : Fragment() {
     ): View? {
 
         // Inflate view and obtain an instance of the binding class
-        binding = DataBindingUtil.inflate( inflater, R.layout.game_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
         Log.i("GameFragment", "Called ViewModelProvider")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.setLifecycleOwner(this)
+
+        // Giving the binding access to the GameViewModel
         binding.gameViewModel = viewModel
 
         binding.guess = Guess()
         val adapter = GuessAnswerAdapter()
-      //Create Adapter for Recycle view
+        //Create Adapter for Recycle view
         binding.quessList.adapter = adapter
-        binding.setLifecycleOwner(this)
 
-        binding.submitButton.setOnClickListener{
+        binding.submitButton.setOnClickListener {
             viewModel.checkGuess(binding.guess)
             binding.guess = Guess()
         }
 
         viewModel.currentGuessNumber.observe(viewLifecycleOwner, Observer {
-           binding.editTextNumber.text = it
+            binding.editTextNumber.text = it
         })
         viewModel.guessList.observe(viewLifecycleOwner, Observer {
-            it?.let{
+            it?.let {
                 adapter.data = it
             }
         })
@@ -68,7 +71,9 @@ class GameFragment : Fragment() {
      * Called when the game is finished
      */
     private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameDestinationToResultFragment(viewModel.attempts.value ?: 0, viewModel.result)
+        val action = GameFragmentDirections.actionGameDestinationToResultFragment(
+            viewModel.attempts.value ?: 0, viewModel.result
+        )
         NavHostFragment.findNavController(this).navigate(action)
     }
 

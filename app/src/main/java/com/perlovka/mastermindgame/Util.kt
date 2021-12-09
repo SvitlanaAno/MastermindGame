@@ -7,7 +7,7 @@ fun resultMessage(match: Int): String{
     if(match == 4)
         return " You win the game!"
     else
-        return "You loose the game"
+        return "You lost the game..."
 }
 
 /**
