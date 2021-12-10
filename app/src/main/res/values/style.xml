@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Styles -->
+    <style name="GreenText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/aldrich</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="BlackText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/aldrich</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="Black"
+        parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/BlackButtonThemeOverlay</item>
+    </style>
+<style name="BlackButtonThemeOverlay">
+        <item name="colorButtonNormal">@color/black</item>
+        <item name="android:fontFamily">@font/aldrich</item>
+        <item name="android:textSize">14sp</item>
+        <item name="strokeColor">@color/green</item>
+    <item name="strokeWidth">2dp</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+    <style name="Green"
+        parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/GreenButtonThemeOverlay</item>
+    </style>
+
+    <style name="GreenButtonThemeOverlay">
+        <item name="android:backgroundTint">@color/button_disabled</item>
+        <item name="strokeColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/aldrich</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

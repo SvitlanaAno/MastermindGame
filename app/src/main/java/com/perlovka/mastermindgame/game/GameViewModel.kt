@@ -40,7 +40,7 @@ class GameViewModel : ViewModel() {
         get() = _status
 
     //NEED TO REWRITE
-    private lateinit var secretNumber: String
+    private var secretNumber = "0000"
     //NEED TO REWRITE
     var result = ""
 
@@ -81,12 +81,12 @@ class GameViewModel : ViewModel() {
         }
     }
 
-
     //Function to connect to Internet and inflate secret random number
     private fun getSecretNumber() {
         viewModelScope.launch {
             _status.value = SecretNumberApiStatus.LOADING
             try {
+
                 secretNumber =  SecretNumberApi.retrofitService.getNumber(4, 0, 7, 1, 10, "plain", "new")
                     .filter { it.isDigit() }
                 _status.value = SecretNumberApiStatus.DONE
@@ -103,13 +103,19 @@ class GameViewModel : ViewModel() {
     fun onGameFinishedComplete() {
         _eventGameFinished.value = false
     }
-    //Function to check if current guess matches secret number
+
+    /**
+     * Executes when the SUBMIT button is clicked.
+     * Check if guess matches secret number
+     */
     fun checkGuess() {
+
         var guessMatch = 0
         var appearence = 0
 
         val guess = _currentGuess.value
-        //Check appearance and matches if guess is not null
+
+        // Check appearance and matches if guess is not null
         guess?.let {
             for (i in it.number.indices) {
                 val n = it.number[i]
@@ -124,19 +130,27 @@ class GameViewModel : ViewModel() {
             it.message = convertResultToMessage(guessMatch, appearence)
             _currentGuessNumber.value = it.number
             _submitButtonClickable.value = false
+
+            // Added Current guess to history of guesses list
             addGuessToAnswerList(it)
         }
-
+        // Decrease number of Attempts left
         _attempts.value = (_attempts.value)?.minus(1)
+
+        // Check if number of attempts ends or secret number is guessed
         if (_attempts.value == 0 || guessMatch == 4) {
             result = resultMessage(guessMatch)
             _eventGameFinished.value = true
         }
+        // Create new guess object
         val newGuess = Guess()
         _currentGuessNumber.value = newGuess.number
         _currentGuess.value = newGuess
     }
 
+    /**
+     * Executes when 0 -7 number button is clicked.
+     */
     fun numberSelected(number: Int) {
         var guess = _currentGuess.value
         guess?.let{
@@ -152,7 +166,9 @@ class GameViewModel : ViewModel() {
             it.letters = it.letters.plus(1)
         }
     }
-
+    /**
+     * Executes when the Delete button is clicked.
+     */
     fun reset() {
         val guess = _currentGuess.value
         val newGuess = Guess()
@@ -163,7 +179,9 @@ class GameViewModel : ViewModel() {
             _currentGuess.value = Guess()
         }
     }
-
+/**
+ * Called when the ViewModel is dismantled.
+ **/
     override fun onCleared() {
         super.onCleared()
         Log.i("GameViewModel", "GameViewModel destroyed")

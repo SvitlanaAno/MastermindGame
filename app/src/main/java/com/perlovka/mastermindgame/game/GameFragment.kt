@@ -50,18 +50,21 @@ class GameFragment : Fragment() {
             //binding.guess = Guess()
         }
 
+        // Observe changes to Guess number and display in text views
         viewModel.currentGuessNumber.observe(viewLifecycleOwner, Observer {
-          // NEED TO REWRITE mayby loop
-            when(it.length){
-                0 -> {  binding.input0.text =""
-                    binding.input1.text =""
-                    binding.input2.text =""
-                    binding.input3.text =""
+          if(it.isBlank()){
+                binding.input0.text =""
+                  binding.input1.text =""
+                  binding.input2.text =""
+                  binding.input3.text =""
+              }
+            for(i in it.indices){
+                when(i){
+                    0 -> binding.input0.text = it[0].toString()
+                    1 -> binding.input1.text = it[1].toString()
+                    2 -> binding.input2.text = it[2].toString()
+                    3 -> binding.input3.text = it[3].toString()
                 }
-                1 -> binding.input0.text = it.get(0).toString()
-                2 -> binding.input1.text = it.get(1).toString()
-                3 -> binding.input2.text = it.get(2).toString()
-                4 -> binding.input3.text = it.get(3).toString()
             }
         })
 
@@ -101,6 +104,7 @@ class GameFragment : Fragment() {
         )
         NavHostFragment.findNavController(this).navigate(action)
     }
+
     /**
      * Called to show snackBar
      */

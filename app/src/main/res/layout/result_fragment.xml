@@ -18,9 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{resultViewModel.message}"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="normal"
+            style="@style/GreenText"
             app:layout_constraintBottom_toTopOf="@+id/score_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -36,9 +34,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@{String.valueOf(resultViewModel.score)}"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="normal"
+            style="@style/GreenText"
             app:layout_constraintBottom_toTopOf="@+id/play_again_button"
             app:layout_constraintEnd_toEndOf="@+id/play_again_button"
             app:layout_constraintStart_toEndOf="@+id/score_text"
@@ -52,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="@string/your_score_text"
+            style="@style/GreenText"
             app:layout_constraintBottom_toBottomOf="@+id/score_number"
             app:layout_constraintEnd_toStartOf="@+id/score_number"
             app:layout_constraintHorizontal_bias="0.5"
@@ -60,6 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/result_text" />
 
         <Button
+            style="@style/Green"
             android:id="@+id/play_again_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

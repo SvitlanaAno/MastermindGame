@@ -15,24 +15,24 @@
 
         <TextView
             android:id="@+id/guess"
+            style="@style/BlackText"
             android:layout_width="54dp"
             android:layout_height="54dp"
-            android:background="#FFEB3B"
+            android:background="@color/green_dark"
             android:gravity="center"
-            android:text="1234"
-            android:textSize="@dimen/text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1234" />
 
         <TextView
             android:id="@+id/message"
+            style="@style/GreenText"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/grey"
             android:gravity="start|center_vertical"
             android:paddingStart="@dimen/padding"
-            android:text="No input"
-            android:textSize="@dimen/text_size"
             app:layout_constraintBottom_toBottomOf="@+id/guess"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
