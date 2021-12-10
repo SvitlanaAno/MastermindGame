@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.snackbar.Snackbar
 import com.perlovka.mastermindgame.R
 import com.perlovka.mastermindgame.databinding.GameFragmentBinding
 import com.perlovka.mastermindgame.model.Guess
@@ -38,19 +39,33 @@ class GameFragment : Fragment() {
         // Giving the binding access to the GameViewModel
         binding.gameViewModel = viewModel
 
-        binding.guess = Guess()
+        //binding.guess = Guess()
         val adapter = GuessAnswerAdapter()
+
         //Create Adapter for Recycle view
         binding.quessList.adapter = adapter
 
         binding.submitButton.setOnClickListener {
-            viewModel.checkGuess(binding.guess)
-            binding.guess = Guess()
+            viewModel.checkGuess()
+            //binding.guess = Guess()
         }
 
         viewModel.currentGuessNumber.observe(viewLifecycleOwner, Observer {
-            binding.editTextNumber.text = it
+          // NEED TO REWRITE mayby loop
+            when(it.length){
+                0 -> {  binding.input0.text =""
+                    binding.input1.text =""
+                    binding.input2.text =""
+                    binding.input3.text =""
+                }
+                1 -> binding.input0.text = it.get(0).toString()
+                2 -> binding.input1.text = it.get(1).toString()
+                3 -> binding.input2.text = it.get(2).toString()
+                4 -> binding.input3.text = it.get(3).toString()
+            }
         })
+
+        // Observe changes to list of Guesses and update Recycle View list
         viewModel.guessList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.data = it
@@ -64,6 +79,16 @@ class GameFragment : Fragment() {
             }
         })
 
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                SecretNumberApiStatus.ERROR -> {
+                    showSnackBar(R.string.no_internet_message)
+                }
+                SecretNumberApiStatus.DONE -> {
+                    showSnackBar(R.string.done_loading_message)
+                }
+            }
+        })
         return binding.root
     }
 
@@ -76,5 +101,14 @@ class GameFragment : Fragment() {
         )
         NavHostFragment.findNavController(this).navigate(action)
     }
-
+    /**
+     * Called to show snackBar
+     */
+    private fun showSnackBar(resId :Int){
+        Snackbar.make(
+            requireActivity().findViewById(android.R.id.content),
+            getString(resId),
+            Snackbar.LENGTH_SHORT
+        ).show()
+    }
 }

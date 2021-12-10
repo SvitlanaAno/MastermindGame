@@ -17,28 +17,46 @@
             android:id="@+id/result_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{resultViewModel.message}"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="normal"
-            android:text="@{resultViewModel.message}"
             app:layout_constraintBottom_toTopOf="@+id/score_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="You win" />
 
         <TextView
             android:id="@+id/score_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@{String.valueOf(resultViewModel.score)}"
             android:textColor="@color/black"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/play_again_button"
             app:layout_constraintEnd_toEndOf="@+id/play_again_button"
-            app:layout_constraintStart_toStartOf="@+id/result_text"
+            app:layout_constraintStart_toEndOf="@+id/score_text"
+            app:layout_constraintTop_toBottomOf="@+id/result_text"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="30" />
+
+        <TextView
+            android:id="@+id/score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/your_score_text"
+            app:layout_constraintBottom_toBottomOf="@+id/score_number"
+            app:layout_constraintEnd_toStartOf="@+id/score_number"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/play_again_button"
             app:layout_constraintTop_toBottomOf="@+id/result_text" />
 
         <Button
@@ -53,16 +71,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/score_number" />
 
-        <TextView
-            android:id="@+id/score_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/your_score_text"
-            app:layout_constraintBottom_toBottomOf="@+id/score_number"
-            app:layout_constraintEnd_toStartOf="@+id/score_number"
-            app:layout_constraintHorizontal_bias="0.88"
-            app:layout_constraintStart_toStartOf="@+id/play_again_button"
-            app:layout_constraintTop_toTopOf="@+id/score_number" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

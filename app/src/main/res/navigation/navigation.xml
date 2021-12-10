@@ -11,10 +11,18 @@
         android:label="title_fragment" >
         <action
             android:id="@+id/action_title_to_game"
-            app:destination="@id/game_destination" />
+            app:destination="@id/game_destination"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/title_destination" />
         <action
             android:id="@+id/action_title_destination_to_rulesFlagment"
-            app:destination="@id/rules_destination" />
+            app:destination="@id/rules_destination"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/title_destination" />
     </fragment>
     <fragment
         android:id="@+id/game_destination"
@@ -22,7 +30,10 @@
         android:label="game_fragment" >
         <action
             android:id="@+id/action_game_destination_to_resultFragment"
-            app:destination="@id/result_destination" />
+            app:destination="@id/result_destination"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_in_right"
+            app:popUpTo="@id/title_destination" />
     </fragment>
     <fragment
         android:id="@+id/result_destination"
@@ -33,7 +44,11 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_restart"
-            app:destination="@id/game_destination" />
+            app:destination="@id/game_destination"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/game_destination"
+            app:popUpToInclusive="true" />
         <argument
             android:name="message"
             app:argType="string"

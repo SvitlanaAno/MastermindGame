@@ -13,7 +13,10 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+enum class SecretNumberApiStatus { LOADING, ERROR, DONE }
+/**
+ * The [ViewModel] that is attached to the [GameFragment].
+ */
 class GameViewModel : ViewModel() {
     // The current attempt
     private val _attempts = MutableLiveData<Int>()
@@ -25,134 +28,140 @@ class GameViewModel : ViewModel() {
     val currentGuessNumber: LiveData<String>
         get() = _currentGuessNumber
 
+
+    private val _currentGuess = MutableLiveData<Guess>()
+    val currentGuess: LiveData<Guess>
+        get() = _currentGuess
+
+
+    // The LiveData that stores the status of the most recent request
+    private val _status = MutableLiveData<SecretNumberApiStatus>()
+    val status: LiveData<SecretNumberApiStatus>
+        get() = _status
+
     //NEED TO REWRITE
-    private var secretNumber = hashMapOf('1' to 0, '2' to 1, '3' to 2, '4' to 3)
-
+    private lateinit var secretNumber: String
+    //NEED TO REWRITE
     var result = ""
-    private val _eventGameFinished = MutableLiveData<Boolean>()
 
+    // The LiveData that stores the status of the game
+    private val _eventGameFinished = MutableLiveData<Boolean>()
     val eventGameFinished: LiveData<Boolean>
         get() = _eventGameFinished
 
     // List of guesses
     private var guessItemList = mutableListOf<Guess>()
-
-
     private val _guessList = MutableLiveData<List<Guess>>()
-
     val guessList: LiveData<List<Guess>>
         get() = _guessList
 
+    // The LiveData that stores the visibility parameter of Submit Button
     private val _submitButtonClickable = MutableLiveData<Boolean>()
     val submitButtonClickable: LiveData<Boolean>
         get() = _submitButtonClickable
 
+    init {
+        _attempts.value = 10
+        _currentGuess.value = Guess()
+        _currentGuessNumber.value = Guess().number
+        _eventGameFinished.value = false
+        _submitButtonClickable.value = false
 
-    // Add a new guess to the guesses list
-    fun addGuessToAnswerList(guess: Guess?) {
-        if (guess != null) {
-            guessItemList.add(guess)
+        //Call to getSecretNumber() networt request to inflate secretNumber
+        getSecretNumber()
+
+        Log.i("GameViewModel", "GameViewModel created")
+    }
+
+    // Function to add a new guess to the guesses list
+    private fun addGuessToAnswerList(guess: Guess?) {
+        guess?.let {
+            guessItemList.add(it)
             _guessList.value = guessItemList
         }
     }
 
-    init {
-        _attempts.value = 10
-        _currentGuessNumber.value = Guess().number
-        _eventGameFinished.value = false
-        _submitButtonClickable.value = false
-        //Call to getSecretNumber() networt request to inflate secretNumber
-        getSecretNumber()
-        Log.i("GameViewModel", "GameViewModel created")
-    }
 
-    //NEED TO REWRITE
+    //Function to connect to Internet and inflate secret random number
     private fun getSecretNumber() {
         viewModelScope.launch {
+            _status.value = SecretNumberApiStatus.LOADING
             try {
-            SecretNumberApi.retrofitService.getNumber(4, 0, 7, 1, 10, "plain", "new")
-                .enqueue(object : Callback<String> {
-                    override fun onFailure(call: Call<String>, t: Throwable) {
-                        Log.i("GameViewModel", "Request fail")
-                    }
-
-                    override fun onResponse(call: Call<String>, response: Response<String>) {
-                        var snumner = response.body()?.filter { it.isDigit() } ?: "1111"
-                        secretNumber = hashMapOf(
-                            snumner.get(0) to 0,
-                            snumner.get(1) to 1,
-                            snumner.get(2) to 2,
-                            snumner.get(3) to 3
-                        )
+                secretNumber =  SecretNumberApi.retrofitService.getNumber(4, 0, 7, 1, 10, "plain", "new")
+                    .filter { it.isDigit() }
+                _status.value = SecretNumberApiStatus.DONE
                         Log.i("GameViewModel", "Request done")
-                    }
-                })
+
         } catch (e: Exception) {
+                secretNumber = "1234"
+                _status.value = SecretNumberApiStatus.ERROR
                 Log.i("GameViewModel", e.message?:"Exception occur")
-                return@launch
         }
     }
-        }
-
+    }
+    //Function to change game status
     fun onGameFinishedComplete() {
         _eventGameFinished.value = false
     }
-
-    fun checkGuess(guess: Guess?) {
+    //Function to check if current guess matches secret number
+    fun checkGuess() {
         var guessMatch = 0
         var appearence = 0
 
+        val guess = _currentGuess.value
         //Check appearance and matches if guess is not null
         guess?.let {
-            //         guess.number = guess.number.replace("\\s".toRegex(), "")
-            val number = guess.number
-            for (i in number.indices) {
-                var n = number.get(i)
-                if (secretNumber.containsKey(n)) {
-                    if (secretNumber.get(n) == i) {
+            for (i in it.number.indices) {
+                val n = it.number[i]
+                if (secretNumber.contains(n)) {
+                    if (secretNumber[i] == n) {
                         guessMatch = guessMatch.plus(1)
                     } else {
                         appearence = appearence.plus(1)
                     }
                 }
             }
-            guess.message = convertResultToMessage(guessMatch, appearence)
-            _currentGuessNumber.value = guess.number
+            it.message = convertResultToMessage(guessMatch, appearence)
+            _currentGuessNumber.value = it.number
+            _submitButtonClickable.value = false
+            addGuessToAnswerList(it)
         }
-        addGuessToAnswerList(guess)
-        _submitButtonClickable.value = false
 
         _attempts.value = (_attempts.value)?.minus(1)
-
         if (_attempts.value == 0 || guessMatch == 4) {
             result = resultMessage(guessMatch)
             _eventGameFinished.value = true
         }
-    }
-
-    //NEED TO REWRITE
-    fun numberSelected(number: Int, guess: Guess) {
-        // Need to rewrite
-        guess.number = guess.number.filter { it.isDigit() }
-        val builder = StringBuilder(guess.number)
-        when (guess.letters) {
-            0 -> guess.number = builder.append(number).append(" _ _ _").toString()
-            1 -> guess.number = builder.append(number).append(" _ _").toString()
-            2 -> guess.number = builder.append(number).append(" _").toString()
-            3 -> {
-                guess.number = builder.append(number).toString()
-                _submitButtonClickable.value = true
-            }
-        }
-        _currentGuessNumber.value = guess.number
-        guess.letters = guess.letters.plus(1)
-    }
-
-    fun reset(guess: Guess) {
         val newGuess = Guess()
-        guess.number = newGuess.number
-        guess.letters = newGuess.letters
-        _currentGuessNumber.value = guess.number
+        _currentGuessNumber.value = newGuess.number
+        _currentGuess.value = newGuess
+    }
+
+    fun numberSelected(number: Int) {
+        var guess = _currentGuess.value
+        guess?.let{
+            val builder = StringBuilder(it.number)
+            when (it.letters) {
+                in 0..2 -> it.number = builder.append(number).toString()
+                3 -> {
+                    it.number = builder.append(number).toString()
+                    _submitButtonClickable.value = true
+                }
+            }
+            _currentGuessNumber.value = it.number
+            it.letters = it.letters.plus(1)
+        }
+    }
+
+    fun reset() {
+        val guess = _currentGuess.value
+        val newGuess = Guess()
+        guess?.let{
+            it.number = newGuess.number
+            it.letters = newGuess.letters
+            _currentGuessNumber.value = it.number
+            _currentGuess.value = Guess()
+        }
     }
 
     override fun onCleared() {

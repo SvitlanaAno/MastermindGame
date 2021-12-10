@@ -20,11 +20,10 @@ private val retrofit = Retrofit.Builder()
  */
 interface SecretNumberApiService {
     @GET("integers")
-    fun getNumber(@Query("num") num: Int,
+    suspend fun getNumber(@Query("num") num: Int,
                           @Query("min") min: Int, @Query("max") max: Int,
                           @Query("col") col: Int, @Query("base") base: Int,
-                          @Query("format")  format: String, @Query("rnd") rnd: String):
-            Call<String>
+                          @Query("format")  format: String, @Query("rnd") rnd: String): String
 }
 /**
  * A public Api object that exposes the lazy-initialized Retrofit service
