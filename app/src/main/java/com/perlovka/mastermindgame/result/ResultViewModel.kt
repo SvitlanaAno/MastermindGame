@@ -43,10 +43,12 @@ class ResultViewModel(attempts : Int, message: String, secretNumber: String, app
         _score.value = currentTotal
         _totalGameScore.value = previousTotal + currentTotal
         _message.value = message
-        Log.i("ResultViewModel", "Final score is $attempts")
+        Log.i("ResultViewModel", "ResultViewModel created. Final score is $attempts")
 
     }
-
+    /**
+     * Executes when the Play Again button is clicked.
+     */
     fun onPlayAgain() {
         _eventPlayAgain.value = true
     }
@@ -59,7 +61,9 @@ class ResultViewModel(attempts : Int, message: String, secretNumber: String, app
 
         }
     }
-
+    /**
+     * Executes when the Reset score button is clicked, it's clear game and total score value.
+     */
     fun onResetTotalScore() {
         _score.value = 0
         _totalGameScore.value = 0
@@ -70,5 +74,13 @@ class ResultViewModel(attempts : Int, message: String, secretNumber: String, app
             userPreference.incrementTotalScore( _totalGameScore.value?:0)
         }
         _eventPlayAgain.value = false
+    }
+
+    /**
+    * Called when the ViewModel is dismantled.
+    **/
+    override fun onCleared() {
+        super.onCleared()
+        Log.i("ResultViewModel", "ResultViewModel destroyed")
     }
 }

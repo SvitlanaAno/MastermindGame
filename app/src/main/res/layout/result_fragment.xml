@@ -90,9 +90,11 @@
         <Button
             android:id="@+id/play_again_button"
             style="@style/Green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/start_margin"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/end_margin"
             android:onClick="@{() -> resultViewModel.onPlayAgain()}"
             android:text="@string/play_again"
             app:layout_constraintBottom_toTopOf="@+id/reset_score_button"
@@ -104,9 +106,9 @@
 
         <Button
             android:id="@+id/reset_score_button"
-            style="@style/Green"
+            style="@style/Black"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:onClick="@{() -> resultViewModel.onResetTotalScore()}"
             android:text="@string/reset_score_button"

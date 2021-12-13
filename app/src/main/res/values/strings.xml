@@ -7,11 +7,15 @@
     <string name="rule">Rules</string>
     <string name="delete_button">Delete</string>
     <string name="play_again">Play Again</string>
+    <string name="back_button">Back</string>
 
     <!-- Text  -->
     <string name="your_score_text">Your Score:</string>
     <string name="attempts_label">Attempts:</string>
     <string name="total_score_label">Total Score:</string>
+    <string name="reset_score_button">Reset score</string>
+    <string name="secret_number_label">Secret Number:</string>
+
     <!-- Numbers to choose -->
     <string name="item_0">0</string>
     <string name="item_1">1</string>
@@ -29,18 +33,18 @@
 
 
     <!-- Rules text -->
-    <string name="rules_text" > At the start of the game the computer will randomly select a pattern of four different numbers from a total of 8 different numbers.
-    \n \n \t Player will have 10 attempts to guess the number combinations
-	\n \n\t  At the end of each guess, computer will provide one of the following response as feedback:
-	\n\n \t • The player had guess a correct number
-	\n\n \t• The player had guessed a correct number and its correct location
-	\n\n \t • The player’s guess was incorrect
+    <string name="rules_text" >At the start of the game the computer will randomly select a pattern of four different numbers from a total of 8 different numbers.
+    \n \n Player will have 10 attempts to guess the number combinations
+	\n At the end of each guess, computer will provide one of the following response as feedback:
+	\n \t• The player had guess a correct number
+	\n \t• The player had guessed a correct number and its correct location
+	\n \t• The player’s guess was incorrect
     </string>
 
     <!-- Error message strings -->
     <string name="done_loading_message">Good Luck!</string>
     <string name="loading_message">Connection to internet</string>
     <string name="no_internet_message">No Internet Connection…</string>
-    <string name="reset_score_button">Reset</string>
-    <string name="secret_number_label">Secret Number:</string>
+    <string name="label_text">Mastermind Game</string>
+
 </resources>

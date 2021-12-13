@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Data to make available to the XML via data binding -->
+    <data>
+
+        <variable
+            name="gameViewModel"
+            type="com.perlovka.mastermindgame.game.GameViewModel" />
+
+    </data>
+
+    <!-- Start of the visible fragment layout using ConstraintLayout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/input_1"
+            style="@style/GreenText"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/border_button"
+            app:layout_constraintBottom_toBottomOf="@+id/input_0"
+            app:layout_constraintStart_toEndOf="@+id/input_0"
+            app:layout_constraintTop_toTopOf="@+id/input_0"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/input_2"
+            style="@style/GreenText"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/border_button"
+            app:layout_constraintBottom_toBottomOf="@+id/input_1"
+            app:layout_constraintStart_toEndOf="@+id/input_1"
+            app:layout_constraintTop_toTopOf="@+id/input_1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/input_3"
+            style="@style/GreenText"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/border_button"
+            app:layout_constraintBottom_toBottomOf="@+id/input_2"
+            app:layout_constraintStart_toEndOf="@+id/input_2"
+            app:layout_constraintTop_toTopOf="@+id/input_2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/attempts_text"
+            style="@style/GreenText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{String.valueOf(gameViewModel.attempts)}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/attempts_label"
+            app:layout_constraintStart_toStartOf="@+id/attempts_label"
+            app:layout_constraintTop_toBottomOf="@+id/attempts_label"
+            tools:text="10" />
+
+        <TextView
+            android:id="@+id/attempts_label"
+            style="@style/GreenText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/attempts_label"
+            app:layout_constraintBottom_toTopOf="@+id/attempts_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/attempts_text">
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="item_0, item_1,item_2,item_3, item_4, item_5, item_6, item_7"
+                app:flow_horizontalAlign="start"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_wrapMode="chain"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_0"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(0)}"
+                android:text="@string/item_0"
+                app:layout_constraintEnd_toStartOf="@+id/item_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_1"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(1)}"
+                android:text="@string/item_1"
+                app:layout_constraintEnd_toStartOf="@+id/item_2"
+                app:layout_constraintStart_toEndOf="@+id/item_0"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_2"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(2)}"
+                android:text="@string/item_2"
+                app:layout_constraintEnd_toStartOf="@+id/item_3"
+                app:layout_constraintStart_toEndOf="@+id/item_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_3"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(3)}"
+                android:text="@string/item_3"
+                app:layout_constraintEnd_toStartOf="@+id/item_4"
+                app:layout_constraintStart_toEndOf="@+id/item_2" />
+
+            <TextView
+                android:id="@+id/item_4"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(4)}"
+                android:text="@string/item_4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_5"
+                app:layout_constraintStart_toEndOf="@+id/item_3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_5"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(5)}"
+                android:text="@string/item_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_6"
+                app:layout_constraintStart_toEndOf="@+id/item_4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_6"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(6)}"
+                android:text="@string/item_6"
+                app:layout_constraintEnd_toStartOf="@+id/item_7"
+                app:layout_constraintStart_toEndOf="@+id/item_5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_7"
+                style="@style/GreenText"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/border_button"
+                android:onClick="@{() -> gameViewModel.numberSelected(7)}"
+                android:text="@string/item_7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_6"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quess_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/delete_button"
+            style="@style/Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> gameViewModel.reset()}"
+            android:text="@string/delete_button"
+            app:layout_constraintBottom_toBottomOf="@+id/input_0"
+            app:layout_constraintEnd_toEndOf="@+id/submit_button"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/submit_button"
+            app:layout_constraintTop_toBottomOf="@+id/submit_button" />
+
+        <Button
+            android:id="@+id/submit_button"
+            style="@style/Green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:enabled="@{gameViewModel.submitButtonClickable}"
+            android:text="@string/submit_button"
+            app:layout_constraintBottom_toTopOf="@+id/delete_button"
+            app:layout_constraintEnd_toStartOf="@+id/quess_list"
+            app:layout_constraintStart_toEndOf="@+id/input_3"
+            app:layout_constraintTop_toTopOf="@+id/input_0"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/input_0"
+            style="@style/GreenText"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/border_button"
+            app:layout_constraintBottom_toBottomOf="@+id/attempts_text"
+            app:layout_constraintStart_toEndOf="@+id/attempts_label"
+            app:layout_constraintTop_toBottomOf="@id/attempts_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,6 +7,7 @@ import androidx.lifecycle.*
 import androidx.navigation.fragment.NavHostFragment
 import com.perlovka.mastermindgame.SecretNumberApi
 import com.perlovka.mastermindgame.convertResultToMessage
+import com.perlovka.mastermindgame.generateSecret
 import com.perlovka.mastermindgame.model.Guess
 import com.perlovka.mastermindgame.resultMessage
 import kotlinx.coroutines.launch
@@ -40,7 +41,7 @@ class GameViewModel : ViewModel() {
         get() = _status
 
     // Variable to store random number retrieved from network request
-    lateinit var secretNumber: String
+    var secretNumber: String = generateSecret()
 
     // Variable to store result of GuessCheck function
     lateinit var result : String
@@ -91,11 +92,12 @@ class GameViewModel : ViewModel() {
                 secretNumber =  SecretNumberApi.retrofitService.getNumber(4, 0, 7, 1, 10, "plain", "new")
                     .filter { it.isDigit() }
                 _status.value = SecretNumberApiStatus.DONE
-                        Log.i("GameViewModel", "Request done")
+                        Log.i("GameViewModel", "Request done  secret number:  $secretNumber")
 
         } catch (e: Exception) {
-                secretNumber = "1234"
+                secretNumber = generateSecret()
                 _status.value = SecretNumberApiStatus.ERROR
+                Log.i("GameViewModel", "Request error:  $secretNumber")
                 Log.i("GameViewModel", e.message?:"Exception occur")
         }
     }

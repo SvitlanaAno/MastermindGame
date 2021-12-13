@@ -33,7 +33,8 @@
             app:destination="@id/result_destination"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_in_right"
-            app:popUpTo="@id/title_destination" />
+            app:popUpTo="@id/title_destination"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/result_destination"
@@ -45,10 +46,9 @@
         <action
             android:id="@+id/action_restart"
             app:destination="@id/game_destination"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popUpTo="@id/game_destination"
-            app:popUpToInclusive="true" />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/game_destination" />
         <argument
             android:name="message"
             app:argType="string"
@@ -61,5 +61,12 @@
     <fragment
         android:id="@+id/rules_destination"
         android:name="com.perlovka.mastermindgame.rules.RulesFlagment"
-        android:label="RulesFlagment" />
+        android:label="RulesFlagment" >
+        <action
+            android:id="@+id/action_rules_destination_to_title_destination"
+            app:destination="@id/title_destination"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_in_right"
+            app:popUpTo="@id/title_destination" />
+    </fragment>
 </navigation>
