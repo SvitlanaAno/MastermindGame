@@ -5,7 +5,7 @@
     <string name="play_button">Play</string>
     <string name="submit_button">Submit</string>
     <string name="rule">Rules</string>
-    <string name="delete_button">Delete</string>
+    <string name="delete_button">Clear</string>
     <string name="play_again">Play Again</string>
     <string name="back_button">Back</string>
 
@@ -15,6 +15,9 @@
     <string name="total_score_label">Total Score:</string>
     <string name="reset_score_button">Reset score</string>
     <string name="secret_number_label">Secret Number:</string>
+    <string name="label_text">Mastermind Game</string>
+    <string name="rules_image_description">Rules image banner</string>
+    <string name="title_image_description">Title image with hacker who crack the password</string>
 
     <!-- Numbers to choose -->
     <string name="item_0">0</string>
@@ -34,7 +37,7 @@
 
     <!-- Rules text -->
     <string name="rules_text" >At the start of the game the computer will randomly select a pattern of four different numbers from a total of 8 different numbers.
-    \n \n Player will have 10 attempts to guess the number combinations
+    \n \n Player will have 10 attempts to guess the number combinations and only 5 minutes for the game.
 	\n At the end of each guess, computer will provide one of the following response as feedback:
 	\n \t• The player had guess a correct number
 	\n \t• The player had guessed a correct number and its correct location
@@ -45,8 +48,5 @@
     <string name="done_loading_message">Good Luck!</string>
     <string name="loading_message">Connection to internet</string>
     <string name="no_internet_message">No Internet Connection…</string>
-    <string name="label_text">Mastermind Game</string>
-    <string name="rules_image_description">Rules image banner</string>
-    <string name="title_image_description">Title image with hacker who crack the password</string>
 
 </resources>

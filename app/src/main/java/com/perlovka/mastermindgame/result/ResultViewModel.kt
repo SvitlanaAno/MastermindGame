@@ -7,36 +7,41 @@ import com.perlovka.mastermindgame.model.UserPreference
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ResultViewModel(attempts : Int, message: String, secretNumber: String, application: Application) : AndroidViewModel(application) {
+class ResultViewModel(
+    attempts: Int,
+    message: String,
+    secretNumber: String,
+    application: Application
+) : AndroidViewModel(application) {
 
     // Get a reference to the UsrPreference
     private var userPreference: UserPreference = UserPreference(application)
 
-    private val currentTotal = attempts*5
-    var previousTotal =  0
+    private val currentTotal = attempts * 5
+    var previousTotal = 0
 
     private var _score = MutableLiveData<Int>()
-    val score : LiveData<Int>
+    val score: LiveData<Int>
         get() = _score
 
     private var _totalGameScore = MutableLiveData<Int>()
-    val totalGameScore : LiveData<Int>
+    val totalGameScore: LiveData<Int>
         get() = _totalGameScore
 
     private var _message = MutableLiveData<String>()
-    val message : LiveData<String>
+    val message: LiveData<String>
         get() = _message
 
     private var _secretNumber = MutableLiveData<String>()
-    val secretNumberValue : LiveData<String>
+    val secretNumberValue: LiveData<String>
         get() = _secretNumber
 
 
     private var _eventPlayAgain = MutableLiveData<Boolean>()
-    val eventPlayAgain : LiveData<Boolean>
+    val eventPlayAgain: LiveData<Boolean>
         get() = _eventPlayAgain
 
-    init{
+    init {
         readTotalScore()
         _secretNumber.value = secretNumber
         _eventPlayAgain.value = false
@@ -46,6 +51,7 @@ class ResultViewModel(attempts : Int, message: String, secretNumber: String, app
         Log.i("ResultViewModel", "ResultViewModel created. Final score is $attempts")
 
     }
+
     /**
      * Executes when the Play Again button is clicked.
      */
@@ -61,6 +67,7 @@ class ResultViewModel(attempts : Int, message: String, secretNumber: String, app
 
         }
     }
+
     /**
      * Executes when the Reset score button is clicked, it's clear game and total score value.
      */
@@ -71,14 +78,14 @@ class ResultViewModel(attempts : Int, message: String, secretNumber: String, app
 
     fun onPlayAgainComplete() {
         viewModelScope.launch {
-            userPreference.incrementTotalScore( _totalGameScore.value?:0)
+            userPreference.incrementTotalScore(_totalGameScore.value ?: 0)
         }
         _eventPlayAgain.value = false
     }
 
     /**
-    * Called when the ViewModel is dismantled.
-    **/
+     * Called when the ViewModel is dismantled.
+     **/
     override fun onCleared() {
         super.onCleared()
         Log.i("ResultViewModel", "ResultViewModel destroyed")

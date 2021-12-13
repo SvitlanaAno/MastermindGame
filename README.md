@@ -8,7 +8,7 @@
  ## Game rules
 
 At the start of the game the computer will randomly select a pattern of four different numbers from a total of 8 different numbers.
-• A player will have 10 attempts to guess the number combinations
+• A player will have 10 attempts to guess the number combinations and only 5 minutes
 • At the end of each guess, computer will provide one of the following response
 as feedback:
 • The player had guess a correct number
@@ -32,7 +32,7 @@ The app is implementing the MVVM pattern and consists:
 
 Four Screens, each screen is implemented as a Fragment
 - TitleFragment - dispalys screen with play button and rules button.
-- GameFragment -  dispalys available for selection number 0-7( in the aspect of UI view the number are fixed) and combinations of 4 selected numbers, and the number of guesses left, also dispalys a list of all the  history of guesses and their feedback. 
+- GameFragment -  dispalys available for selection number 0-7( in the aspect of UI view the number are fixed) and combinations of 4 selected numbers, the number of guesses left and a timer, also dispalys a list of all the  history of guesses and their feedback. 
 - ResultFragment - dispalys score of the current game and total score of user games, and restart an reset button.
 - Rules Fragment - displays the overal rules how to play the game.
 
@@ -70,8 +70,8 @@ Use Random Number Generator API (https://www.random.org/clients/http/api/) to ge
 
 ## Potential Enhancements
 -  add tests
+-  add view to guess history to show how many number correct and on the right position
 -  add settings screen for difficulty level selection
--  add a timer
 -  add animation on the result screen
 
 
