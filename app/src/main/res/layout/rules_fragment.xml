@@ -15,7 +15,8 @@
         android:src="@drawable/rules_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/rules_image_description" />
 
     <ScrollView
         android:layout_width="match_parent"

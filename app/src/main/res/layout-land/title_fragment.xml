@@ -3,22 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    ConstraintLayout in this case flattens nested components tree which increases the performance -->
+    <!--    ConstraintLayout in this case flattens nested components tree which increases the performance -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <ImageView
             android:id="@+id/title_image"
             android:layout_width="300dp"
             android:layout_height="300dp"
+            android:contentDescription="@string/title_image_description"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             app:srcCompat="@drawable/title_image" />
+
+        <TextView
+            android:id="@+id/label_text"
+            style="@style/GreenText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/aldrich"
+            android:text="@string/label_text"
+            android:textAlignment="center"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/play_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/title_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
             android:id="@+id/play_button"
@@ -47,23 +64,6 @@
             app:layout_constraintEnd_toEndOf="@+id/play_button"
             app:layout_constraintStart_toStartOf="@+id/play_button"
             app:layout_constraintTop_toBottomOf="@+id/play_button" />
-
-        <TextView
-            android:id="@+id/label_text"
-            style="@style/GreenText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/aldrich"
-            android:text="@string/label_text"
-            android:textAlignment="center"
-            android:textSize="42sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/play_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/title_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

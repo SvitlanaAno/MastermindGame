@@ -46,5 +46,7 @@
     <string name="loading_message">Connection to internet</string>
     <string name="no_internet_message">No Internet Connection…</string>
     <string name="label_text">Mastermind Game</string>
+    <string name="rules_image_description">Rules image banner</string>
+    <string name="title_image_description">Title image with hacker who crack the password</string>
 
 </resources>

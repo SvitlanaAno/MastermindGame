@@ -18,42 +18,6 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/input_1"
-            style="@style/GreenText"
-            android:layout_width="45dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="3dp"
-            android:background="@drawable/border_button"
-            app:layout_constraintBottom_toBottomOf="@+id/input_0"
-            app:layout_constraintStart_toEndOf="@+id/input_0"
-            app:layout_constraintTop_toTopOf="@+id/input_0"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/input_2"
-            style="@style/GreenText"
-            android:layout_width="45dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="3dp"
-            android:background="@drawable/border_button"
-            app:layout_constraintBottom_toBottomOf="@+id/input_1"
-            app:layout_constraintStart_toEndOf="@+id/input_1"
-            app:layout_constraintTop_toTopOf="@+id/input_1"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/input_3"
-            style="@style/GreenText"
-            android:layout_width="45dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="3dp"
-            android:background="@drawable/border_button"
-            app:layout_constraintBottom_toBottomOf="@+id/input_2"
-            app:layout_constraintStart_toEndOf="@+id/input_2"
-            app:layout_constraintTop_toTopOf="@+id/input_2"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
             android:id="@+id/attempts_text"
             style="@style/GreenText"
             android:layout_width="wrap_content"
@@ -78,6 +42,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+        android:id="@+id/input_0"
+        style="@style/GreenText"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/border_button"
+        app:layout_constraintBottom_toBottomOf="@+id/attempts_text"
+        app:layout_constraintStart_toEndOf="@+id/attempts_label"
+        app:layout_constraintTop_toBottomOf="@id/attempts_label" />
+
+        <TextView
+        android:id="@+id/input_1"
+        style="@style/GreenText"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/border_button"
+        app:layout_constraintBottom_toBottomOf="@+id/input_0"
+        app:layout_constraintStart_toEndOf="@+id/input_0"
+        app:layout_constraintTop_toTopOf="@+id/input_0"
+        app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+        android:id="@+id/input_2"
+        style="@style/GreenText"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/border_button"
+        app:layout_constraintBottom_toBottomOf="@+id/input_1"
+        app:layout_constraintStart_toEndOf="@+id/input_1"
+        app:layout_constraintTop_toTopOf="@+id/input_1"
+        app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+        android:id="@+id/input_3"
+        style="@style/GreenText"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/border_button"
+        app:layout_constraintBottom_toBottomOf="@+id/input_2"
+        app:layout_constraintStart_toEndOf="@+id/input_2"
+        app:layout_constraintTop_toTopOf="@+id/input_2"
+        app:layout_constraintVertical_bias="0.0" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -246,16 +258,6 @@
             app:layout_constraintTop_toTopOf="@+id/input_0"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
-            android:id="@+id/input_0"
-            style="@style/GreenText"
-            android:layout_width="45dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/border_button"
-            app:layout_constraintBottom_toBottomOf="@+id/attempts_text"
-            app:layout_constraintStart_toEndOf="@+id/attempts_label"
-            app:layout_constraintTop_toBottomOf="@id/attempts_label" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
