@@ -98,6 +98,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@{gameViewModel.timeLeftString}"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="@+id/input_3"
             app:layout_constraintStart_toStartOf="@+id/input_0"
