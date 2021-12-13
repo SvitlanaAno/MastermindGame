@@ -11,6 +11,7 @@
     <!-- Text  -->
     <string name="your_score_text">Your Score:</string>
     <string name="attempts_label">Attempts:</string>
+    <string name="total_score_label">Total Score:</string>
     <!-- Numbers to choose -->
     <string name="item_0">0</string>
     <string name="item_1">1</string>
@@ -40,4 +41,6 @@
     <string name="done_loading_message">Good Luck!</string>
     <string name="loading_message">Connection to internet</string>
     <string name="no_internet_message">No Internet Connection…</string>
+    <string name="reset_score_button">Reset</string>
+    <string name="secret_number_label">Secret Number:</string>
 </resources>

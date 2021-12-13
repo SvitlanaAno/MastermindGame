@@ -14,11 +14,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.perlovka.mastermindgame.R
 import com.perlovka.mastermindgame.databinding.GameFragmentBinding
 import com.perlovka.mastermindgame.model.Guess
+import com.perlovka.mastermindgame.model.UserPreference
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class GameFragment : Fragment() {
     private lateinit var viewModel: GameViewModel
     private lateinit var binding: GameFragmentBinding
-
     /**
      * Called when the Fragment is ready to display content to the screen.
      * This function uses DataBindingUtil to inflate R.layout.game_fragment.
@@ -34,7 +37,7 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         // Giving the binding access to the GameViewModel
         binding.gameViewModel = viewModel
@@ -47,7 +50,6 @@ class GameFragment : Fragment() {
 
         binding.submitButton.setOnClickListener {
             viewModel.checkGuess()
-            //binding.guess = Guess()
         }
 
         // Observe changes to Guess number and display in text views
@@ -92,6 +94,8 @@ class GameFragment : Fragment() {
                 }
             }
         })
+
+
         return binding.root
     }
 
@@ -100,7 +104,7 @@ class GameFragment : Fragment() {
      */
     private fun gameFinished() {
         val action = GameFragmentDirections.actionGameDestinationToResultFragment(
-            viewModel.attempts.value ?: 0, viewModel.result
+            viewModel.attempts.value ?: 0, viewModel.result, viewModel.secretNumber
         )
         NavHostFragment.findNavController(this).navigate(action)
     }

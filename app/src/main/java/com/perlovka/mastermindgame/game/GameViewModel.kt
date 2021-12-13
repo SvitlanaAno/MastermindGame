@@ -23,7 +23,7 @@ class GameViewModel : ViewModel() {
     val attempts: LiveData<Int>
         get() = _attempts
 
-    // The current guess
+    // The current guess number
     private val _currentGuessNumber = MutableLiveData<String>()
     val currentGuessNumber: LiveData<String>
         get() = _currentGuessNumber
@@ -39,10 +39,11 @@ class GameViewModel : ViewModel() {
     val status: LiveData<SecretNumberApiStatus>
         get() = _status
 
-    //NEED TO REWRITE
-    private var secretNumber = "0000"
-    //NEED TO REWRITE
-    var result = ""
+    // Variable to store random number retrieved from network request
+    lateinit var secretNumber: String
+
+    // Variable to store result of GuessCheck function
+    lateinit var result : String
 
     // The LiveData that stores the status of the game
     private val _eventGameFinished = MutableLiveData<Boolean>()
@@ -67,7 +68,7 @@ class GameViewModel : ViewModel() {
         _eventGameFinished.value = false
         _submitButtonClickable.value = false
 
-        //Call to getSecretNumber() networt request to inflate secretNumber
+        //Call to getSecretNumber() network request to inflate secretNumber
         getSecretNumber()
 
         Log.i("GameViewModel", "GameViewModel created")
@@ -152,7 +153,7 @@ class GameViewModel : ViewModel() {
      * Executes when 0 -7 number button is clicked.
      */
     fun numberSelected(number: Int) {
-        var guess = _currentGuess.value
+        val guess = _currentGuess.value
         guess?.let{
             val builder = StringBuilder(it.number)
             when (it.letters) {

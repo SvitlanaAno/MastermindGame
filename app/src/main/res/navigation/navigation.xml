@@ -53,6 +53,10 @@
             android:name="message"
             app:argType="string"
             android:defaultValue="You are loose" />
+        <argument
+            android:name="secretNumber"
+            app:argType="string"
+            android:defaultValue="1234" />
     </fragment>
     <fragment
         android:id="@+id/rules_destination"
