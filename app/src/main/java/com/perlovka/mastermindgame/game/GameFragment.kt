@@ -33,7 +33,7 @@ class GameFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
@@ -45,12 +45,6 @@ class GameFragment : Fragment() {
 
         // Giving the binding access to the GameViewModel
         binding.gameViewModel = viewModel
-
-        //binding.guess = Guess()
-        val adapter = GuessAnswerAdapter()
-
-        //Create Adapter for Recycle view
-        binding.quessList.adapter = adapter
 
         binding.submitButton.setOnClickListener {
             viewModel.checkGuess()
@@ -73,13 +67,17 @@ class GameFragment : Fragment() {
                 }
             }
         })
+        //Create Adapter for Recycle view
+        val adapter = GuessAnswerAdapter()
 
         // Observe changes to list of Guesses and update Recycle View list
         viewModel.guessList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
+
+        binding.quessList.adapter = adapter
 
         // Sets up event listening to navigate the player when the game is finished
         viewModel.eventBuzz.observe(viewLifecycleOwner, Observer { buzzEvent ->
@@ -133,16 +131,16 @@ class GameFragment : Fragment() {
         ).show()
     }
     /**
-     * Given a pattern, this method makes sure the device buzzes
+     * Given a pattern, this method makes sure the device vibrates
      */
     private fun buzz(pattern: LongArray) {
-        val buzzer = activity?.getSystemService<Vibrator>()
+        val buzzer = context?.getSystemService<Vibrator>()
 
         buzzer?.let {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 buzzer.vibrate(VibrationEffect.createWaveform(pattern, -1))
             } else {
-                //deprecated in API 26
+                @Suppress("DEPRECATION")
                 buzzer.vibrate(pattern, -1)
             }
         }

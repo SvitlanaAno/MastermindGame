@@ -3,19 +3,13 @@ package com.perlovka.mastermindgame.game
 import android.os.CountDownTimer
 import android.text.format.DateUtils
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.*
-import androidx.navigation.fragment.NavHostFragment
 import com.perlovka.mastermindgame.SecretNumberApi
 import com.perlovka.mastermindgame.convertResultToMessage
 import com.perlovka.mastermindgame.generateSecret
 import com.perlovka.mastermindgame.model.Guess
 import com.perlovka.mastermindgame.resultMessage
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 // These are the three different types of API request status
 enum class SecretNumberApiStatus { LOADING, ERROR, DONE }
@@ -211,7 +205,7 @@ class GameViewModel : ViewModel() {
         val guess = _currentGuess.value
         guess?.let {
             val builder = StringBuilder(it.number)
-            when (it.letters) {
+            when (it.size) {
                 in 0..2 -> it.number = builder.append(number).toString()
                 3 -> {
                     it.number = builder.append(number).toString()
@@ -219,7 +213,7 @@ class GameViewModel : ViewModel() {
                 }
             }
             _currentGuessNumber.value = it.number
-            it.letters = it.letters.plus(1)
+            it.size = it.size.plus(1)
         }
     }
 
@@ -231,7 +225,7 @@ class GameViewModel : ViewModel() {
         val newGuess = Guess()
         guess?.let {
             it.number = newGuess.number
-            it.letters = newGuess.letters
+            it.size = newGuess.size
             _submitButtonClickable.value = false
             _currentGuessNumber.value = it.number
             _currentGuess.value = Guess()
