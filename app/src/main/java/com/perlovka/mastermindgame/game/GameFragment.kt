@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 class GameFragment : Fragment() {
     private lateinit var viewModel: GameViewModel
     private lateinit var binding: GameFragmentBinding
+
     /**
      * Called when the Fragment is ready to display content to the screen.
      * This function uses DataBindingUtil to inflate R.layout.game_fragment.
@@ -52,14 +53,14 @@ class GameFragment : Fragment() {
 
         // Observe changes to Guess number and display in text views
         viewModel.currentGuessNumber.observe(viewLifecycleOwner, Observer {
-          if(it.isBlank()){
-                binding.input0.text =""
-                  binding.input1.text =""
-                  binding.input2.text =""
-                  binding.input3.text =""
-              }
-            for(i in it.indices){
-                when(i){
+            if (it.isBlank()) {
+                binding.input0.text = ""
+                binding.input1.text = ""
+                binding.input2.text = ""
+                binding.input3.text = ""
+            }
+            for (i in it.indices) {
+                when (i) {
                     0 -> binding.input0.text = it[0].toString()
                     1 -> binding.input1.text = it[1].toString()
                     2 -> binding.input2.text = it[2].toString()
@@ -115,7 +116,7 @@ class GameFragment : Fragment() {
      */
     private fun gameFinished() {
         val action = GameFragmentDirections.actionGameDestinationToResultFragment(
-            viewModel.attempts.value ?: 0, viewModel.result.value?:"", viewModel.secretNumber
+            viewModel.attempts.value ?: 0, viewModel.result.value ?: "", viewModel.secretNumber
         )
         NavHostFragment.findNavController(this).navigate(action)
     }
@@ -123,13 +124,14 @@ class GameFragment : Fragment() {
     /**
      * Called to show snackBar
      */
-    private fun showSnackBar(resId :Int){
+    private fun showSnackBar(resId: Int) {
         Snackbar.make(
             requireActivity().findViewById(android.R.id.content),
             getString(resId),
             Snackbar.LENGTH_SHORT
         ).show()
     }
+
     /**
      * Given a pattern, this method makes sure the device vibrates
      */
