@@ -27,6 +27,10 @@ git clone https://github.com/SvitlanaAno/MastermindGame.git
 
 - Run the app on an emulator or directly on a device.
 
+### Requirements
+  * Android Studio version 2020.3.1 or newer
+  * Java 11
+
 ## Project Overview
 The app is implementing the MVVM pattern and consists:
 
