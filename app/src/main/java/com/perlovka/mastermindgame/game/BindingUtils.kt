@@ -16,3 +16,16 @@ fun TextView.setGuessResultMessage(item: Guess?) {
         text = item.message
     }
 }
+@BindingAdapter("guessInRightPosition")
+fun TextView.setGuessInRightPosition(item: Guess?){
+    item?.let{
+        text = item.guessRightNumberRightPositionCounter.toString()
+    }
+}
+
+@BindingAdapter("guessInWrongPosition")
+fun TextView.setGuessInWrongPosition(item: Guess?){
+    item?.let{
+        text = item.rightNumberWrongPositionCounter.toString()
+    }
+}

@@ -72,6 +72,7 @@ class GameViewModel : ViewModel() {
     // Variable to store random number retrieved from network request
     var secretNumber: String = generateSecret()
 
+    var secretNumberMap: MutableMap<Char, Int> = HashMap<Char, Int>()
     // Variable to store result of GuessCheck function
     private val _result = MutableLiveData<String>()
     val result: LiveData<String>
@@ -135,6 +136,10 @@ class GameViewModel : ViewModel() {
                 secretNumber =
                     SecretNumberApi.retrofitService.getNumber(4, 0, 7, 1, 10, "plain", "new")
                         .filter { it.isDigit() }
+                for(i in secretNumber.indices){
+                    val count =  secretNumberMap.getOrPut(secretNumber[i]){0}
+                    secretNumberMap[secretNumber[i]] = count + 1
+                }
                 _status.value = SecretNumberApiStatus.DONE
                 Log.i("GameViewModel", "Request done  secret number:  $secretNumber")
 
@@ -160,8 +165,10 @@ class GameViewModel : ViewModel() {
      */
     fun checkGuess() {
 
-        var guessMatch = 0
-        var appearence = 0
+        //guessMatch = how many digits are in the right position
+        var guessMatchCounter = 0
+        // appearence = how many digits are in the secretnumber
+        var appearenceCounter = 0
 
         val guess = _currentGuess.value
 
@@ -169,15 +176,21 @@ class GameViewModel : ViewModel() {
         guess?.let {
             for (i in it.number.indices) {
                 val n = it.number[i]
-                if (secretNumber.contains(n)) {
+                if (secretNumberMap.containsKey(n)) {
                     if (secretNumber[i] == n) {
-                        guessMatch = guessMatch.plus(1)
+                        guessMatchCounter = guessMatchCounter.plus(1)
+                        secretNumberMap[n] = secretNumberMap[n]!! - 1
                     } else {
-                        appearence = appearence.plus(1)
+                        if (secretNumberMap[n]!! > 0) {
+                            appearenceCounter = appearenceCounter.plus(1)
+                            secretNumberMap[n] = secretNumberMap[n]!! - 1
+                        }
                     }
                 }
             }
-            it.message = convertResultToMessage(guessMatch, appearence)
+            it.guessRightNumberRightPositionCounter = guessMatchCounter
+            it.rightNumberWrongPositionCounter = appearenceCounter
+            it.message = convertResultToMessage(guessMatchCounter, appearenceCounter)
             _currentGuessNumber.value = it.number
             _submitButtonClickable.value = false
 
@@ -188,8 +201,8 @@ class GameViewModel : ViewModel() {
         _attempts.value = (_attempts.value)?.minus(1)
 
         // Check if number of attempts ends or secret number is guessed
-        if (_attempts.value == 0 || guessMatch == 4) {
-            _result.value = resultMessage(guessMatch)
+        if (_attempts.value == 0 || guessMatchCounter == 4) {
+            _result.value = resultMessage(guessMatchCounter)
             _eventGameFinished.value = true
         }
         // Create new guess object

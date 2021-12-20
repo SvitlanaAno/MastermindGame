@@ -47,7 +47,7 @@ class GuessAnswerAdapter: ListAdapter<Guess, GuessAnswerAdapter.ViewHolder>(Gues
 
         override fun areContentsTheSame(oldItem: Guess, newItem: Guess): Boolean {
            // return oldItem == newItem
-            return oldItem.number == newItem.number
+            return oldItem == newItem
         }
     }
 

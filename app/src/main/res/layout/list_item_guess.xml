@@ -38,14 +38,36 @@
             android:layout_height="0dp"
             android:background="@color/grey"
             android:gravity="start|center_vertical"
-            android:padding ="@dimen/padding"
+            android:padding="@dimen/padding"
+            app:guessResultMessage="@{guesses}"
             app:layout_constraintBottom_toBottomOf="@+id/guess"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/guess"
             app:layout_constraintTop_toTopOf="@+id/guess"
-            app:layout_constraintVertical_bias="0.0"
-            app:guessResultMessage="@{guesses}"/>
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/color_item_1"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            style="@style/BlackText"
+            app:guessInRightPosition="@{guesses}"
+            app:layout_constraintBottom_toBottomOf="@+id/color_item_2"
+            app:layout_constraintEnd_toStartOf="@+id/color_item_2"
+            app:layout_constraintTop_toTopOf="@+id/color_item_2" />
+
+        <TextView
+            android:id="@+id/color_item_2"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            style="@style/BlackText"
+
+            app:guessInWrongPosition="@{guesses}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/message"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
