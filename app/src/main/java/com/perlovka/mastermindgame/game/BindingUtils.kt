@@ -34,7 +34,7 @@ fun TextView.setGuessInWrongPosition(item: Guess?){
 @BindingAdapter("guess1")
 fun TextView.setGuessColorPosition1(item: Guess?) {
     item?.let {
-        setBackgroundColor(
+        setBackgroundResource(
             when (item.guessRightNumberRightPositionCounter[0]) {
                 0 -> R.color.black
                 1 -> R.color.green_dark
@@ -48,7 +48,7 @@ fun TextView.setGuessColorPosition1(item: Guess?) {
 @BindingAdapter("guess2")
 fun TextView.setGuessColorPosition2(item: Guess?) {
     item?.let {
-        setBackgroundColor(
+        setBackgroundResource(
             when (item.guessRightNumberRightPositionCounter[1]) {
                 0 -> R.color.black
                 1 -> R.color.green_dark
@@ -61,7 +61,7 @@ fun TextView.setGuessColorPosition2(item: Guess?) {
 @BindingAdapter("guess3")
 fun TextView.setGuessColorPosition3(item: Guess?) {
     item?.let {
-        setBackgroundColor(
+        setBackgroundResource(
             when (item.guessRightNumberRightPositionCounter[2]) {
                 0 -> R.color.black
                 1 -> R.color.green_dark
@@ -74,7 +74,7 @@ fun TextView.setGuessColorPosition3(item: Guess?) {
 @BindingAdapter("guess4")
 fun TextView.setGuessColorPosition4(item: Guess?) {
     item?.let {
-        setBackgroundColor(
+        setBackgroundResource(
             when (item.guessRightNumberRightPositionCounter[3]) {
                 0 -> R.color.black
                 1 -> R.color.green_dark

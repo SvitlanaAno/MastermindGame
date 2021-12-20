@@ -188,7 +188,7 @@ class GameViewModel : ViewModel() {
                     }
                 }
             }
-            for(i in 0 until (guessMatchCounter-1)){
+            for(i in 0 until guessMatchCounter){
                 it.guessRightNumberRightPositionCounter[i] = 2
             }
             it.rightNumberWrongPositionCounter = appearenceCounter
