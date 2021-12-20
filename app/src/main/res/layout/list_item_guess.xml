@@ -50,9 +50,11 @@
         <TextView
             android:id="@+id/color_item_1"
             android:layout_width="25dp"
-            android:layout_height="0dp"
-            style="@style/BlackText"
-            app:guessInRightPosition="@{guesses}"
+            android:layout_height="25dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/round_view"
+            android:paddingEnd="2dp"
+            app:guess1="@{guesses}"
             app:layout_constraintBottom_toBottomOf="@+id/color_item_2"
             app:layout_constraintEnd_toStartOf="@+id/color_item_2"
             app:layout_constraintTop_toTopOf="@+id/color_item_2" />
@@ -60,13 +62,37 @@
         <TextView
             android:id="@+id/color_item_2"
             android:layout_width="25dp"
-            android:layout_height="0dp"
-            style="@style/BlackText"
-
-            app:guessInWrongPosition="@{guesses}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="25dp"
+            android:layout_marginEnd="2dp"
+            android:paddingEnd="2dp"
+            app:guess2="@{guesses}"
+            app:layout_constraintBottom_toTopOf="@+id/color_item_4"
             app:layout_constraintEnd_toEndOf="@+id/message"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/color_item_3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/round_view"
+            android:paddingEnd="2dp"
+            app:guess3="@{guesses}"
+            app:layout_constraintBottom_toBottomOf="@+id/color_item_4"
+            app:layout_constraintEnd_toStartOf="@+id/color_item_4"
+            app:layout_constraintTop_toTopOf="@+id/color_item_4" />
+
+        <TextView
+            android:id="@+id/color_item_4"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/round_view"
+            android:paddingEnd="2dp"
+            app:guess4="@{guesses}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/color_item_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

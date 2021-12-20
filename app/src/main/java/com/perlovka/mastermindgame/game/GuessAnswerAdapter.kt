@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.perlovka.mastermindgame.R
 import com.perlovka.mastermindgame.databinding.ListItemGuessBinding
 import com.perlovka.mastermindgame.model.Guess
 
@@ -26,6 +27,45 @@ class GuessAnswerAdapter: ListAdapter<Guess, GuessAnswerAdapter.ViewHolder>(Gues
             binding.guesses = item
             binding.executePendingBindings()
         }
+
+
+       /* fun bind(item: Guess) {
+            binding.guess.text = item.number
+            binding.message.text = item.message
+            binding.colorItem1.setBackgroundColor(
+                when (item.guessRightNumberRightPositionCounter[0]) {
+                    0 -> R.color.black
+                    1 -> R.color.green_dark
+                    2 -> R.color.green
+                    else -> R.color.white
+                }
+            )
+            binding.colorItem2.setBackgroundColor(
+                when (item.guessRightNumberRightPositionCounter[1]) {
+                    0 -> R.color.black
+                    1 -> R.color.green_dark
+                    2 -> R.color.green
+                    else -> R.color.white
+                }
+            )
+
+            binding.colorItem3.setBackgroundColor(
+                when (item.guessRightNumberRightPositionCounter[2]) {
+                    0 -> R.color.black
+                    1 -> R.color.green_dark
+                    2 -> R.color.green
+                    else -> R.color.white
+                }
+            )
+            binding.colorItem4.setBackgroundColor(
+                when (item.guessRightNumberRightPositionCounter[3]) {
+                    0 -> R.color.black
+                    1 -> R.color.green_dark
+                    2 -> R.color.green
+                    else -> R.color.white
+                }
+            )
+        }*/
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {

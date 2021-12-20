@@ -188,7 +188,9 @@ class GameViewModel : ViewModel() {
                     }
                 }
             }
-            it.guessRightNumberRightPositionCounter = guessMatchCounter
+            for(i in 0 until (guessMatchCounter-1)){
+                it.guessRightNumberRightPositionCounter[i] = 2
+            }
             it.rightNumberWrongPositionCounter = appearenceCounter
             it.message = convertResultToMessage(guessMatchCounter, appearenceCounter)
             _currentGuessNumber.value = it.number
